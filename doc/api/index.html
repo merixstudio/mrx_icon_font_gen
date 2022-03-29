@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 4.1.0">
+  <meta name="description" content="icon_font API docs, for the Dart programming language.">
+  <title>icon_font - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">icon_font package</li>
+  </ol>
+  <div class="self-name">icon_font</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <p>The <code>icon_font</code> package can be used to generate an icon font from a directory of SVG files.
+The font is created using a <a href="https://www.fluttericon.com/">FlutterIcon</a> tool, and thus, it requires
+an Internet connection to work. Generated files can be used to further customize the font file using
+the FlutterIcon web tool.</p>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#command-line-options">Command Line Options</a></li>
+<li><a href="#outputs">Outputs</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>This package is intended to create an icon font and associated Dart class with
+<a href="https://api.flutter.dev/flutter/widgets/IconData-class.html">IconData</a> objects ready to use in an
+application.</p>
+<p>You can install it globally:</p>
+<pre class="language-shell"><code class="language-shell">dart pub global activate font_icon
+</code></pre>
+<p>Alternatively, you can put it under
+<a href="https://dart.dev/tools/pub/dependencies#dev-dependencies"><code>dev_dependencies</code></a>, in your
+<a href="https://dart.dev/tools/pub/pubspec"><code>pubspec.yaml</code></a>.</p>
+<pre class="language-shell"><code class="language-shell">flutter pub add --dev font_icon
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>The <code>icon_font</code> package provides a binary by the same name, which can generate all required files
+using <code>create</code> command: <code>dart run icon_font create</code>. It will generate three files, one of which will
+be the icon font in the TTF format. The font itself needs to be added to application fonts in
+<a href="https://dart.dev/tools/pub/pubspec"><code>pubspec.yaml</code></a>. Using default values, it would be:</p>
+<pre class="language-yaml"><code class="language-yaml">flutter:
+  fonts:
+    - family: AppIcons # Use the same name as the "--class-name" option value
+      fonts:
+        - asset: assets/fonts/AppIcons.ttf
+</code></pre>
+<hr>
+<p><strong>WARNING</strong></p>
+<p>Subsequent executions of <code>icon_font create</code> will discard previously created files. Currently, you
+can modify your icon font only using <a href="https://www.fluttericon.com/">FlutterIcon</a> web interface.</p>
+<hr>
+<h3 id="command-line-options">Command Line Options</h3>
+<p>The command supports the following options:</p>
+<ul>
+<li>
+<p><code>--help</code></p>
+<p>Print usage information for the command.</p>
+</li>
+<li>
+<p><code>--from</code></p>
+<p>Path to a directory containing SVG files that should be enclosed in the generated font
+file. The directory will be scanned recursively and all files with an <code>*.svg</code> extension will be
+added to the result. By default, the current directory will be searched.</p>
+<p>Each file is expected to have at least one <code>&lt;path&gt;</code> element containing the glyph description. In
+case of multiple <code>&lt;path&gt;</code> elements, only the first one appearing in the file will be processed.</p>
+</li>
+<li>
+<p><code>--class-name</code></p>
+<p>The name of the Dart class that will contain
+<a href="https://api.flutter.dev/flutter/widgets/IconData-class.html">IconData</a> objects ready to be used
+in <a href="https://api.flutter.dev/flutter/widgets/Icon-class.html">Icon</a> widgets. It should be a valid
+Dart class name. It is also used as a name of generated font file. The default value is
+<code>AppIcons</code>.</p>
+</li>
+<li>
+<p><code>--out-font</code></p>
+<p>The path to a directory, where the font file will be saved. The <code>--class-name</code>
+option value will be used as the name of the file. Remember, to add the generated font to your
+app's fonts in <a href="https://dart.dev/tools/pub/pubspec"><code>pubspec.yaml</code></a>. Defaults to <code>assets/fonts/</code>.</p>
+</li>
+<li>
+<p><code>--out-flutter</code></p>
+<p>The path to a directory, where the class containing
+<a href="https://api.flutter.dev/flutter/widgets/IconData-class.html">IconData</a> objects will be stored.
+Each SVG will have a corresponding field with a name derived from the file path.</p>
+</li>
+<li>
+<p><code>--out-config</code></p>
+<p>The location, where the FlutterIcon-compatible configuration file will be stored.
+The file can be used to further customize the font. Defaults to <code>lib/config/font/</code>.</p>
+</li>
+</ul>
+<h3 id="outputs">Outputs</h3>
+<p>For the following file structure:</p>
+<pre class="language-dart"><code>project_root_directory
+└───assets
+    └───images
+        └───logo.svg
+        └───bottom_bar
+            └───home.svg
+</code></pre>
+<p>Running the command with default options will result in creation of following files:</p>
+<ul>
+<li>
+<p><code>project_root_directory/assets/fonts/AppIcons.ttf</code></p>
+<p>A TTF font generated by <a href="https://www.fluttericon.com/">FlutterIcon</a>.</p>
+</li>
+<li>
+<p><code>project_root_directory/assets/fonts/config/config.json</code></p>
+<p>A configuration file containing normalized glyph information. It can be uploaded to
+<a href="https://www.fluttericon.com/">FlutterIcon</a> for further customization.</p>
+</li>
+<li>
+<p><code>project_root_directory/lib/config/font/app_icons.dart</code></p>
+<p>A Dart class with all glyph definitions. It contains a field for each SVG file. The field name is
+derived from the file's path relative to the <code>--from</code> option path. Slight modifications to the
+name are made to remove illegal characters, and replace spaces and directory separators with
+underscores. Names starting with a digit or an underscore are prefixed with letter <code>i</code>. If a name
+consists only of illegal characters, it will be replaced with<code>icon</code>. An incremental number is
+appended to duplicated names, or names equal to any of the reserved keywords.</p>
+<p>The generated class will look like this:</p>
+</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter/widgets.dart';
+
+class AppIcons {
+  AppIcons._();
+
+  static const _kFontFam = 'AppIcons';
+  static const String? _kFontPkg = null;
+
+  //                     Notice, how "home" icon name is affected by being
+  //                     placed inside a "bottom_bar" directory.
+  static const IconData bottom_bar_home = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData logo = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg); 
+}
+</code></pre>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="icon_font">
+  <span class="name"><a href="icon_font/icon_font-library.html">icon_font</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li class="self-crumb">icon_font package</li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">icon_font</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="icon_font/icon_font-library.html">icon_font</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    icon_font
+      0.1.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
