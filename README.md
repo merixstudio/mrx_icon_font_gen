@@ -31,8 +31,9 @@ flutter pub add --dev icon_font
 ## Usage
 
 The `icon_font` package provides a binary by the same name, which can generate all required files
-using `create` command: `dart run icon_font create`. It will generate three files, one of which will
-be the icon font in the TTF format. The font itself needs to be added to application fonts in
+using `create` command: `dart pub global run icon_font create` (or `dart run icon_font create` if
+installed using [`dev_dependencies`][dev_dependencies]). It will generate three files, one of which
+will be the icon font in the TTF format. The font itself needs to be added to application fonts in
 [`pubspec.yaml`][pubspec]. Using default values, it would be:
 
 ```yaml
