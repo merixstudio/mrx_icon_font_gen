@@ -61,6 +61,7 @@ class FlutterIconClient {
         File(path)
           ..createSync(recursive: true)
           ..writeAsBytesSync(data);
+        print('Saved file "$path"');
       }
     }
   }

@@ -110,6 +110,7 @@ class ConfigGenerator {
 
     String dartName = p
         .split(p.withoutExtension(fileName))
+        .where((s) => s != '.')
         .join('_')
         .replaceAll(RegExp(r'[^\w]+'), '_')
         .replaceAll(RegExp('[_]+'), '_');
