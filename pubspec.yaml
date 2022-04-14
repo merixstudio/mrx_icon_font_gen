@@ -3,21 +3,21 @@ description: A command-line application for generating an icon font from a set o
 version: 0.1.0
 
 environment:
-  sdk: '>=2.15.0 <3.0.0'
+  sdk: '>=2.16.0 <3.0.0'
 
 dev_dependencies:
-  lints: ^1.0.1
-  test: ^1.20.1
+  lints: any
+  test: any
 
 dependencies:
-  archive: ^3.2.1
-  args: ^2.3.0
-  crypto: ^3.0.1
-  http: ^0.13.4
-  path: ^1.8.0
-  petitparser: ^4.4.0
-  vector_math: ^2.1.1
-  xml: ^5.3.1
+  archive: any
+  args: any
+  crypto: any
+  http: any
+  path: any
+  petitparser: any
+  vector_math: any
+  xml: any
 
 executables:
   icon_font: icon_font
