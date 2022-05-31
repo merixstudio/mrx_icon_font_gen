@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "S"}', () {
-      final commandName = 'S';
+      const commandName = 'S';
       final command = SmoothCurveToCommand(
         command: commandName,
         commandArguments: SmoothCurveToCoordinateSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "s"}', () {
-      final commandName = 's';
+      const commandName = 's';
       final command = SmoothCurveToCommand(
         command: commandName,
         commandArguments: SmoothCurveToCoordinateSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'S';
-      final isRelative = false;
+      const commandName = 'S';
+      const isRelative = false;
       final command = SmoothCurveToCommand(
         isRelative: isRelative,
         commandArguments: SmoothCurveToCoordinateSequence(
@@ -64,9 +64,9 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 's';
-      final isRelative = true;
-      final command = SmoothCurveToCommand(
+      const commandName = 's';
+      const isRelative = true;
+      final SmoothCurveToCommand command = SmoothCurveToCommand(
         isRelative: isRelative,
         commandArguments: SmoothCurveToCoordinateSequence(
           coordinatePairDoubles: [],
@@ -78,13 +78,13 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteSmoothCurveToCommand();
-    final toString = 'S20.00 10.00 15.00 15.00 10.00 10.00 10.00 10.00';
+    const toString = 'S20.00 10.00 15.00 15.00 10.00 10.00 10.00 10.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeSmoothCurveToCommand();
-    final toString = 's10.00 0.00 5.00 5.00 -5.00 -5.00 -5.00 -5.00';
+    const toString = 's10.00 0.00 5.00 5.00 -5.00 -5.00 -5.00 -5.00';
     expect(command.toString(), equals(toString));
   });
 

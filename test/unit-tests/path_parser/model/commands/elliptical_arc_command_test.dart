@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "A"}', () {
-      final commandName = 'A';
+      const commandName = 'A';
       final command = EllipticalArcCommand(
         command: commandName,
         commandArguments: EllipticalArcArgumentSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "a"}', () {
-      final commandName = 'a';
+      const commandName = 'a';
       final command = EllipticalArcCommand(
         command: commandName,
         commandArguments: EllipticalArcArgumentSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'A';
-      final isRelative = false;
+      const commandName = 'A';
+      const isRelative = false;
       final command = EllipticalArcCommand(
         isRelative: isRelative,
         commandArguments: EllipticalArcArgumentSequence(
@@ -64,8 +64,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'a';
-      final isRelative = true;
+      const commandName = 'a';
+      const isRelative = true;
       final command = EllipticalArcCommand(
         isRelative: isRelative,
         commandArguments: EllipticalArcArgumentSequence(
@@ -78,20 +78,20 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteEllipticalArcCommand();
-    final toString =
+    const toString =
         'A12.00 6.00 0.00 0 0 30.00 10.00 12.00 6.00 45.00 0 1 30.00 30.00 12.00 6.00 180.00 1 0 10.00 30.00 12.00 6.00 45.00 1 1 10.00 10.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeEllipticalArcCommand();
-    final toString =
+    const toString =
         'a12.00 6.00 0.00 0 0 20.00 0.00 12.00 6.00 45.00 0 1 0.00 20.00 12.00 6.00 180.00 1 0 -20.00 0.00 12.00 6.00 45.00 1 1 0.00 -20.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Absolute applyTransformation() - identity', () {
-    final command = _buildAbsoluteEllipticalArcCommand();
+    final EllipticalArcCommand command = _buildAbsoluteEllipticalArcCommand();
     final transform = Matrix3.identity();
     final startPoint = _buildStartPoint();
     expect(

@@ -1,7 +1,7 @@
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair.dart';
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
-import 'package:icon_font/src/parser/path/model/arguments/smooth_curve_to_coordinate_sequence.dart';
-import 'package:icon_font/src/parser/path/model/command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/smooth_curve_to_coordinate_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 /// A `smooth curveto` draw instruction.
@@ -47,7 +47,7 @@ class SmoothCurveToCommand extends Command {
     final SmoothCurveToCoordinateSequence transformedCommandArguments =
         SmoothCurveToCoordinateSequence(
       coordinatePairDoubles:
-          (commandArguments as SmoothCurveToCoordinateSequence)
+          (commandArguments! as SmoothCurveToCoordinateSequence)
               .coordinatePairDoubles
               .map((cpd) {
         return CoordinatePairDouble(
@@ -76,7 +76,7 @@ class SmoothCurveToCommand extends Command {
     CoordinatePair? startPoint,
   }) {
     if (isAbsolute) {
-      return (commandArguments as SmoothCurveToCoordinateSequence)
+      return (commandArguments! as SmoothCurveToCoordinateSequence)
           .coordinatePairDoubles
           .last
           .coordinatePairs
@@ -85,7 +85,7 @@ class SmoothCurveToCommand extends Command {
     double x = previousPoint.x;
     double y = previousPoint.y;
     for (final CoordinatePairDouble cpd
-        in (commandArguments as SmoothCurveToCoordinateSequence)
+        in (commandArguments! as SmoothCurveToCoordinateSequence)
             .coordinatePairDoubles) {
       x += cpd.coordinatePairs.last.x;
       y += cpd.coordinatePairs.last.y;
@@ -102,8 +102,8 @@ class SmoothCurveToCommand extends Command {
       return false;
     }
     return command == other.command &&
-        commandArguments as SmoothCurveToCoordinateSequence ==
-            other.commandArguments as SmoothCurveToCoordinateSequence;
+        commandArguments! as SmoothCurveToCoordinateSequence ==
+            other.commandArguments! as SmoothCurveToCoordinateSequence;
   }
 
   @override

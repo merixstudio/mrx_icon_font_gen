@@ -1,9 +1,9 @@
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('Constructor', () {
-    final object = _buildObject();
+    final CoordinatePair object = _buildObject();
 
     expect(object.x, closeTo(1.23, 0.001));
     expect(object.y, closeTo(2.35, 0.001));

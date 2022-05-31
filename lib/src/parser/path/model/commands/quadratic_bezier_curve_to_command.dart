@@ -1,7 +1,7 @@
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair.dart';
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
-import 'package:icon_font/src/parser/path/model/arguments/quadratic_bezier_curve_to_coordinate_sequence.dart';
-import 'package:icon_font/src/parser/path/model/command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/quadratic_bezier_curve_to_coordinate_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 /// A `quadratic bezier curveto` draw instruction.
@@ -47,7 +47,7 @@ class QuadraticBezierCurveToCommand extends Command {
     final QuadraticBezierCurveToCoordinateSequence transformedCommandArguments =
         QuadraticBezierCurveToCoordinateSequence(
       coordinatePairDoubles:
-          (commandArguments as QuadraticBezierCurveToCoordinateSequence)
+          (commandArguments! as QuadraticBezierCurveToCoordinateSequence)
               .coordinatePairDoubles
               .map((cpd) {
         return CoordinatePairDouble(
@@ -76,7 +76,7 @@ class QuadraticBezierCurveToCommand extends Command {
     CoordinatePair? startPoint,
   }) {
     if (isAbsolute) {
-      return (commandArguments as QuadraticBezierCurveToCoordinateSequence)
+      return (commandArguments! as QuadraticBezierCurveToCoordinateSequence)
           .coordinatePairDoubles
           .last
           .coordinatePairs
@@ -85,7 +85,7 @@ class QuadraticBezierCurveToCommand extends Command {
     double x = previousPoint.x;
     double y = previousPoint.y;
     for (final CoordinatePairDouble cpd
-        in (commandArguments as QuadraticBezierCurveToCoordinateSequence)
+        in (commandArguments! as QuadraticBezierCurveToCoordinateSequence)
             .coordinatePairDoubles) {
       x += cpd.coordinatePairs.last.x;
       y += cpd.coordinatePairs.last.y;
@@ -102,8 +102,8 @@ class QuadraticBezierCurveToCommand extends Command {
       return false;
     }
     return command == other.command &&
-        commandArguments as QuadraticBezierCurveToCoordinateSequence ==
-            other.commandArguments as QuadraticBezierCurveToCoordinateSequence;
+        commandArguments! as QuadraticBezierCurveToCoordinateSequence ==
+            other.commandArguments! as QuadraticBezierCurveToCoordinateSequence;
   }
 
   @override

@@ -1,4 +1,4 @@
-The `icon_font` package can be used to generate an icon font from a directory of SVG files.
+The `mrx_icon_font_gen` package can be used to generate an icon font from a directory of SVG files.
 The font is created using a [FlutterIcon][] tool, and thus, it requires
 an Internet connection to work. Generated files can be used to further customize the font file using
 the FlutterIcon web tool.
@@ -14,25 +14,16 @@ This package is intended to create an icon font and associated Dart class with
 [IconData][] objects ready to use in an
 application. 
 
-You can install it globally:
+You can install it using the command below:
 
 ```shell
-dart pub global activate icon_font
-```
-
-Alternatively, you can put it under
-[`dev_dependencies`][dev_dependencies], in your
-[`pubspec.yaml`][pubspec].
-
-```shell
-flutter pub add --dev icon_font
+dart pub global activate mrx_icon_font_gen
 ```
 
 ## Usage
 
-The `icon_font` package provides a binary by the same name, which can generate all required files
-using `create` command: `dart pub global run icon_font create` (or `dart run icon_font create` if
-installed using [`dev_dependencies`][dev_dependencies]). It will generate three files, one of which
+The `mrx_icon_font_gen` package provides a binary by the same name, which can generate all required files
+using `create` command: `dart pub global run mrx_icon_font_gen create`. It will generate three files, one of which
 will be the icon font in the TTF format. The font itself needs to be added to application fonts in
 [`pubspec.yaml`][pubspec]. Using default values, it would be:
 
@@ -47,7 +38,7 @@ flutter:
 ---
 **WARNING**
 
-Subsequent executions of `icon_font create` will discard previously created files. Currently, you
+Subsequent executions of `mrx_icon_font_gen create` will discard previously created files. Currently, you
 can modify your icon font only using [FlutterIcon][] web interface.
 
 ---

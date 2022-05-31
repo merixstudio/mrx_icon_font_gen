@@ -1,5 +1,5 @@
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair.dart';
-import 'package:icon_font/src/parser/path/model/command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 /// A `closepath` draw instruction.

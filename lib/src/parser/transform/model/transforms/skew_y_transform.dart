@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/src/parser/transform/model/transform.dart';
+import 'package:mrx_icon_font_gen/src/parser/transform/model/transform.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 class SkewYTransform extends Transform {

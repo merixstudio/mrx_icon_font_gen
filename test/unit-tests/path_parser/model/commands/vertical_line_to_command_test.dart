@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "V"}', () {
-      final commandName = 'V';
+      const commandName = 'V';
       final command = VerticalLineToCommand(
         command: commandName,
         commandArguments: CoordinateSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "v"}', () {
-      final commandName = 'v';
+      const commandName = 'v';
       final command = VerticalLineToCommand(
         command: commandName,
         commandArguments: CoordinateSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'V';
-      final isRelative = false;
+      const commandName = 'V';
+      const isRelative = false;
       final command = VerticalLineToCommand(
         isRelative: isRelative,
         commandArguments: CoordinateSequence(
@@ -64,8 +64,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'v';
-      final isRelative = true;
+      const commandName = 'v';
+      const isRelative = true;
       final command = VerticalLineToCommand(
         isRelative: isRelative,
         commandArguments: CoordinateSequence(
@@ -78,18 +78,18 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteVerticalLineToCommand();
-    final toString = 'V20.00 15.00';
+    const toString = 'V20.00 15.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeVerticalLineToCommand();
-    final toString = 'v10.00 -5.00';
+    const toString = 'v10.00 -5.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Absolute applyTransformation() - identity', () {
-    final command = _buildAbsoluteVerticalLineToCommand();
+    final VerticalLineToCommand command = _buildAbsoluteVerticalLineToCommand();
     final transform = Matrix3.identity();
     final startPoint = _buildStartPoint();
     final translated = LineToCommand(

@@ -1,4 +1,4 @@
-import 'package:icon_font/src/parser/path/model/command_arguments.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command_arguments.dart';
 
 /// A pair of decimal coordinates.
 ///

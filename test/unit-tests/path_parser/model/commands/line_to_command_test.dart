@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "L"}', () {
-      final commandName = 'L';
+      const commandName = 'L';
       final command = LineToCommand(
         command: commandName,
         commandArguments: CoordinatePairSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "l"}', () {
-      final commandName = 'l';
+      const commandName = 'l';
       final command = LineToCommand(
         command: commandName,
         commandArguments: CoordinatePairSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'L';
-      final isRelative = false;
+      const commandName = 'L';
+      const isRelative = false;
       final command = LineToCommand(
         isRelative: isRelative,
         commandArguments: CoordinatePairSequence(
@@ -64,8 +64,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'l';
-      final isRelative = true;
+      const commandName = 'l';
+      const isRelative = true;
       final command = LineToCommand(
         isRelative: isRelative,
         commandArguments: CoordinatePairSequence(
@@ -78,18 +78,18 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteLineToCommand();
-    final toString = 'L20.00 10.00 10.00 20.00';
+    const toString = 'L20.00 10.00 10.00 20.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeLineToCommand();
-    final toString = 'l10.00 0.00 -10.00 10.00';
+    const toString = 'l10.00 0.00 -10.00 10.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Absolute applyTransformation() - identity', () {
-    final command = _buildAbsoluteLineToCommand();
+    final LineToCommand command = _buildAbsoluteLineToCommand();
     final transform = Matrix3.identity();
     final startPoint = _buildStartPoint();
     final translated = LineToCommand(

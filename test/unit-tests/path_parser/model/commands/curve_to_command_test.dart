@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "C"}', () {
-      final commandName = 'C';
+      const commandName = 'C';
       final command = CurveToCommand(
         command: commandName,
         commandArguments: CurveToCoordinateSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "c"}', () {
-      final commandName = 'c';
+      const commandName = 'c';
       final command = CurveToCommand(
         command: commandName,
         commandArguments: CurveToCoordinateSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'C';
-      final isRelative = false;
+      const commandName = 'C';
+      const isRelative = false;
       final command = CurveToCommand(
         isRelative: isRelative,
         commandArguments: CurveToCoordinateSequence(
@@ -64,8 +64,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'c';
-      final isRelative = true;
+      const commandName = 'c';
+      const isRelative = true;
       final command = CurveToCommand(
         isRelative: isRelative,
         commandArguments: CurveToCoordinateSequence(
@@ -78,20 +78,20 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteCurveToCommand();
-    final toString =
+    const toString =
         'C10.00 10.00 30.00 30.00 20.00 30.00 10.00 30.00 30.00 50.00 30.00 40.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeCurveToCommand();
-    final toString =
+    const toString =
         'c0.00 -10.00 20.00 10.00 10.00 10.00 -10.00 0.00 10.00 20.00 10.00 10.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Absolute applyTransformation() - identity', () {
-    final command = _buildAbsoluteCurveToCommand();
+    final CurveToCommand command = _buildAbsoluteCurveToCommand();
     final transform = Matrix3.identity();
     final startPoint = _buildStartPoint();
     expect(

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:icon_font/src/config_generator/model/generator_options.dart';
-import 'package:icon_font/src/config_generator/model/icon_file.dart';
+import 'package:mrx_icon_font_gen/src/config_generator/model/generator_options.dart';
+import 'package:mrx_icon_font_gen/src/config_generator/model/icon_file.dart';
 import 'package:path/path.dart' as p;
 
 class ConfigGenerator {
@@ -31,7 +31,7 @@ class ConfigGenerator {
     int code = 0xE800;
     final Map<String, dynamic> glyphs = {};
     final int prefixLength = p.canonicalize(options.from).length + 1;
-    for (IconFile file in files) {
+    for (final IconFile file in files) {
       String name = _convertToDartName(
         file.file.absolute.path.substring(prefixLength),
       );
@@ -58,7 +58,7 @@ class ConfigGenerator {
       };
       glyphs[name] = glyph;
     }
-    Map<String, dynamic> config = {
+    final Map<String, dynamic> config = {
       'name': options.className,
       'css_prefix_text': '',
       'css_use_suffix': false,
@@ -72,7 +72,7 @@ class ConfigGenerator {
   }
 
   String _convertToDartName(String fileName) {
-    List<String> reservedKeywords = [
+    final List<String> reservedKeywords = [
       'assert',
       'break',
       'case',

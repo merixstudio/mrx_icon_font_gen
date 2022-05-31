@@ -1,4 +1,4 @@
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -9,7 +9,7 @@ void main() {
     });
 
     test('Construct with {command: "Z"}', () {
-      final commandName = 'Z';
+      const commandName = 'Z';
       final command = ClosePathCommand(
         command: commandName,
       );
@@ -17,7 +17,7 @@ void main() {
     });
 
     test('Construct with {command: "z"}', () {
-      final commandName = 'z';
+      const commandName = 'z';
       final command = ClosePathCommand(
         command: commandName,
       );
@@ -34,8 +34,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'Z';
-      final isRelative = false;
+      const commandName = 'Z';
+      const isRelative = false;
       final command = ClosePathCommand(
         isRelative: isRelative,
       );
@@ -43,8 +43,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'z';
-      final isRelative = true;
+      const commandName = 'z';
+      const isRelative = true;
       final command = ClosePathCommand(
         isRelative: isRelative,
       );
@@ -53,7 +53,7 @@ void main() {
   });
 
   test('Absolute toString()', () {
-    final commandName = 'Z';
+    const commandName = 'Z';
     final command = ClosePathCommand(
       command: commandName,
     );
@@ -61,7 +61,7 @@ void main() {
   });
 
   test('Relative toString()', () {
-    final commandName = 'z';
+    const commandName = 'z';
     final command = ClosePathCommand(
       command: commandName,
     );
@@ -69,7 +69,7 @@ void main() {
   });
 
   test('Absolute applyTransformation()', () {
-    final commandName = 'Z';
+    const commandName = 'Z';
     final command = ClosePathCommand(
       command: commandName,
     );
@@ -85,7 +85,7 @@ void main() {
   });
 
   test('Relative applyTransformation()', () {
-    final commandName = 'z';
+    const commandName = 'z';
     final command = ClosePathCommand(
       command: commandName,
     );

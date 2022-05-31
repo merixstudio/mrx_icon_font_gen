@@ -1,7 +1,7 @@
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair.dart';
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
-import 'package:icon_font/src/parser/path/model/arguments/curve_to_coordinate_sequence.dart';
-import 'package:icon_font/src/parser/path/model/command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/curve_to_coordinate_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 /// A `curveto` draw instruction.
@@ -44,7 +44,7 @@ class CurveToCommand extends Command {
         : (transform.clone()..setColumn(2, Vector3(0.0, 0.0, 1.0)));
     final CurveToCoordinateSequence transformedCommandArguments =
         CurveToCoordinateSequence(
-      coordinatePairTriplets: (commandArguments as CurveToCoordinateSequence)
+      coordinatePairTriplets: (commandArguments! as CurveToCoordinateSequence)
           .coordinatePairTriplets
           .map((cpt) {
         return CoordinatePairTriplet(
@@ -73,7 +73,7 @@ class CurveToCommand extends Command {
     CoordinatePair? startPoint,
   }) {
     if (isAbsolute) {
-      return (commandArguments as CurveToCoordinateSequence)
+      return (commandArguments! as CurveToCoordinateSequence)
           .coordinatePairTriplets
           .last
           .coordinatePairs
@@ -82,7 +82,7 @@ class CurveToCommand extends Command {
     double x = previousPoint.x;
     double y = previousPoint.y;
     for (final CoordinatePairTriplet cpt
-        in (commandArguments as CurveToCoordinateSequence)
+        in (commandArguments! as CurveToCoordinateSequence)
             .coordinatePairTriplets) {
       x += cpt.coordinatePairs.last.x;
       y += cpt.coordinatePairs.last.y;
@@ -99,8 +99,8 @@ class CurveToCommand extends Command {
       return false;
     }
     return command == other.command &&
-        commandArguments as CurveToCoordinateSequence ==
-            other.commandArguments as CurveToCoordinateSequence;
+        commandArguments! as CurveToCoordinateSequence ==
+            other.commandArguments! as CurveToCoordinateSequence;
   }
 
   @override

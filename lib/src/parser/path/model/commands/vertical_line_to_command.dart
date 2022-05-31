@@ -1,8 +1,8 @@
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair.dart';
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_sequence.dart';
-import 'package:icon_font/src/parser/path/model/command.dart';
-import 'package:icon_font/src/parser/path/model/commands/line_to_command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/commands/line_to_command.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 /// A `vertical lineto` draw instruction.
@@ -51,7 +51,7 @@ class VerticalLineToCommand extends Command {
     final CoordinatePairSequence transformedCommandArguments =
         CoordinatePairSequence(
       coordinatePairs:
-          (commandArguments as CoordinateSequence).coordinates.map((c) {
+          (commandArguments! as CoordinateSequence).coordinates.map((c) {
         final Vector3 transformed =
             transformationMatrix.transform(Vector3(0.0, c, 1.0));
         return CoordinatePair(
@@ -72,7 +72,7 @@ class VerticalLineToCommand extends Command {
     final CoordinatePairSequence transformedCommandArguments =
         CoordinatePairSequence(
       coordinatePairs:
-          (commandArguments as CoordinateSequence).coordinates.map((c) {
+          (commandArguments! as CoordinateSequence).coordinates.map((c) {
         final Vector3 transformed =
             transform.transform(Vector3(startPoint.x, c, 1.0));
         return CoordinatePair(
@@ -96,7 +96,7 @@ class VerticalLineToCommand extends Command {
   }) {
     if (isAbsolute) {
       final double y =
-          (commandArguments as CoordinateSequence).coordinates.last;
+          (commandArguments! as CoordinateSequence).coordinates.last;
       return CoordinatePair(
         x: previousPoint.x,
         y: y,
@@ -104,7 +104,7 @@ class VerticalLineToCommand extends Command {
     }
     double y = previousPoint.y;
     for (final double dy
-        in (commandArguments as CoordinateSequence).coordinates) {
+        in (commandArguments! as CoordinateSequence).coordinates) {
       y += dy;
     }
     return CoordinatePair(
@@ -119,8 +119,8 @@ class VerticalLineToCommand extends Command {
       return false;
     }
     return command == other.command &&
-        commandArguments as CoordinateSequence ==
-            other.commandArguments as CoordinateSequence;
+        commandArguments! as CoordinateSequence ==
+            other.commandArguments! as CoordinateSequence;
   }
 
   @override

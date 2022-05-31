@@ -1,4 +1,4 @@
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -1741,7 +1741,7 @@ void main() {
     });
 
     test('Elliptical arc, incorrect flags', () {
-      var result =
+      final result =
           pathParser.parse('M 0 0 A 1.23, 2.34, 3.45, 1.0, 0, 4.56, 5.67');
       expect(
         result.isFailure,
@@ -1806,7 +1806,7 @@ void main() {
 
   group('whitespace_and_comma', () {
     test('Different types of whitespace', () {
-      var result = pathParser
+      final result = pathParser
           .parse('M\u{9}\u{20}\u{A}\u{C}\u{D}0\u{9}\u{20}\u{A}\u{C}\u{D}0');
       expect(
         result.value,
@@ -1827,7 +1827,7 @@ void main() {
     });
 
     test('Commas with different amounts of whitespace surrounding them', () {
-      var result = pathParser.parse('M1,2 ,3, 4 , 5  ,  6');
+      final result = pathParser.parse('M1,2 ,3, 4 , 5  ,  6');
       expect(
         result.value,
         equals([
@@ -1857,7 +1857,7 @@ void main() {
 
   group('number_formats', () {
     test('Integers', () {
-      var result = pathParser.parse('M 1234567890 -9876543210');
+      final result = pathParser.parse('M 1234567890 -9876543210');
       expect(
         result.value,
         equals([
@@ -1877,7 +1877,7 @@ void main() {
     });
 
     test('Floats', () {
-      var result = pathParser.parse('M 12345.67890 -98765.43210');
+      final result = pathParser.parse('M 12345.67890 -98765.43210');
       expect(
         result.value,
         equals([
@@ -1897,7 +1897,7 @@ void main() {
     });
 
     test('Scientific notation', () {
-      var result = pathParser.parse('M 12.34E5 -67.89e-10');
+      final result = pathParser.parse('M 12.34E5 -67.89e-10');
       expect(
         result.value,
         equals([

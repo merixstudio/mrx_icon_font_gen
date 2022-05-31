@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:archive/archive.dart';
 import 'package:http/http.dart';
-import 'package:icon_font/src/config_generator/model/generator_options.dart';
+import 'package:mrx_icon_font_gen/src/config_generator/model/generator_options.dart';
 import 'package:path/path.dart' as p;
 
 class FlutterIconClient {
@@ -31,7 +31,7 @@ class FlutterIconClient {
     final StreamedResponse uploadConfigResponse =
         await uploadConfigRequest.send();
     if (uploadConfigResponse.statusCode >= 400) {
-      print(uploadConfigResponse.reasonPhrase);
+      stderr.writeln(uploadConfigResponse.reasonPhrase);
       return;
     }
     final String code =
@@ -49,7 +49,7 @@ class FlutterIconClient {
     _scanArchive(archive.files);
   }
 
-  _scanArchive(List<ArchiveFile> archiveFiles) {
+  void _scanArchive(List<ArchiveFile> archiveFiles) {
     for (final ArchiveFile file in archiveFiles) {
       final fileName = file.name;
       if (file.isFile) {
@@ -61,7 +61,7 @@ class FlutterIconClient {
         File(path)
           ..createSync(recursive: true)
           ..writeAsBytesSync(data);
-        print('Saved file "$path"');
+        stdout.writeln('Saved file "$path"');
       }
     }
   }
@@ -80,9 +80,9 @@ class FlutterIconClient {
   }
 
   String _toSnakeCase(String name) {
-    RegExp exp = RegExp(r'(?<=[a-z])[A-Z]');
+    final RegExp exp = RegExp('(?<=[a-z])[A-Z]');
     return name
-        .replaceAllMapped(exp, (Match m) => ('_' + (m.group(0) ?? '')))
+        .replaceAllMapped(exp, (Match m) => '_${m.group(0) ?? ''}')
         .toLowerCase();
   }
 }

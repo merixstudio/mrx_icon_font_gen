@@ -37,7 +37,7 @@ class DirectoryScanner {
         }
         files.add(file);
       },
-      onError: (error) => print(error),
+      onError: (error) => stderr.writeln(error),
       onDone: () => completer.complete(files),
     );
     return completer.future;

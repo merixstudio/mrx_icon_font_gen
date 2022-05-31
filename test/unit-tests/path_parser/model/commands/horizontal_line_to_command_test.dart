@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "H"}', () {
-      final commandName = 'H';
+      const commandName = 'H';
       final command = HorizontalLineToCommand(
         command: commandName,
         commandArguments: CoordinateSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "h"}', () {
-      final commandName = 'h';
+      const commandName = 'h';
       final command = HorizontalLineToCommand(
         command: commandName,
         commandArguments: CoordinateSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'H';
-      final isRelative = false;
+      const commandName = 'H';
+      const isRelative = false;
       final command = HorizontalLineToCommand(
         isRelative: isRelative,
         commandArguments: CoordinateSequence(
@@ -64,8 +64,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'h';
-      final isRelative = true;
+      const commandName = 'h';
+      const isRelative = true;
       final command = HorizontalLineToCommand(
         isRelative: isRelative,
         commandArguments: CoordinateSequence(
@@ -78,18 +78,18 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteHorizontalLineToCommand();
-    final toString = 'H20.00 15.00';
+    const toString = 'H20.00 15.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeHorizontalLineToCommand();
-    final toString = 'h10.00 -5.00';
+    const toString = 'h10.00 -5.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Absolute applyTransformation() - identity', () {
-    final command = _buildAbsoluteHorizontalLineToCommand();
+    final HorizontalLineToCommand command = _buildAbsoluteHorizontalLineToCommand();
     final transform = Matrix3.identity();
     final startPoint = _buildStartPoint();
     final translated = LineToCommand(

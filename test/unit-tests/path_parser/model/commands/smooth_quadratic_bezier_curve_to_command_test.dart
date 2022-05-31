@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "T"}', () {
-      final commandName = 'T';
+      const commandName = 'T';
       final command = SmoothQuadraticBezierCurveToCommand(
         command: commandName,
         commandArguments: CoordinatePairSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "t"}', () {
-      final commandName = 't';
+      const commandName = 't';
       final command = SmoothQuadraticBezierCurveToCommand(
         command: commandName,
         commandArguments: CoordinatePairSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'T';
-      final isRelative = false;
+      const commandName = 'T';
+      const isRelative = false;
       final command = SmoothQuadraticBezierCurveToCommand(
         isRelative: isRelative,
         commandArguments: CoordinatePairSequence(
@@ -64,9 +64,9 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 't';
-      final isRelative = true;
-      final command = SmoothQuadraticBezierCurveToCommand(
+      const commandName = 't';
+      const isRelative = true;
+      final SmoothQuadraticBezierCurveToCommand command = SmoothQuadraticBezierCurveToCommand(
         isRelative: isRelative,
         commandArguments: CoordinatePairSequence(
           coordinatePairs: [],
@@ -78,13 +78,13 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteSmoothQuadraticBezierCurveToCommand();
-    final toString = 'T20.00 10.00 20.00 20.00 10.00 20.00';
+    const toString = 'T20.00 10.00 20.00 20.00 10.00 20.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeSmoothQuadraticBezierCurveToCommand();
-    final toString = 't10.00 0.00 0.00 10.00 -10.00 0.00';
+    const toString = 't10.00 0.00 0.00 10.00 -10.00 0.00';
     expect(command.toString(), equals(toString));
   });
 

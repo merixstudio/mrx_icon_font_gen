@@ -1,13 +1,13 @@
 import 'dart:math';
 
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair.dart';
-import 'package:icon_font/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
-import 'package:icon_font/src/parser/path/model/arguments/curve_to_coordinate_sequence.dart';
-import 'package:icon_font/src/parser/path/model/arguments/elliptical_arc_argument.dart';
-import 'package:icon_font/src/parser/path/model/arguments/elliptical_arc_argument_sequence.dart';
-import 'package:icon_font/src/parser/path/model/command.dart';
-import 'package:icon_font/src/parser/path/model/commands/curve_to_command.dart';
-import 'package:icon_font/src/parser/path/model/commands/line_to_command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/curve_to_coordinate_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/elliptical_arc_argument.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/elliptical_arc_argument_sequence.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/commands/curve_to_command.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/commands/line_to_command.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 /// An `elliptical arc` draw instruction.
@@ -50,7 +50,7 @@ class EllipticalArcCommand extends Command {
     CoordinatePair startPoint,
   ) {
     final EllipticalArcArgumentSequence argumentSequence =
-        commandArguments as EllipticalArcArgumentSequence;
+        commandArguments! as EllipticalArcArgumentSequence;
     final List<Command> bezierCurves = [];
     CoordinatePair lastPoint = startPoint;
     for (final arguments in argumentSequence.ellipticalArcArguments) {
@@ -95,7 +95,7 @@ class EllipticalArcCommand extends Command {
     double rx = arguments.rx.abs();
     double ry = arguments.ry.abs();
 
-    final double twoPi = pi * 2.0;
+    const double twoPi = pi * 2.0;
 
     // Convert angle from degrees to radians
     final double angleRad =
@@ -113,8 +113,8 @@ class EllipticalArcCommand extends Command {
 
     // Step 1 : Compute (x1', y1')
     // x1,y1 is the midpoint vector rotated to take the arc's angle out of consideration
-    final double x1 = (cosAngle * dx2 + sinAngle * dy2);
-    final double y1 = (-sinAngle * dx2 + cosAngle * dy2);
+    final double x1 = cosAngle * dx2 + sinAngle * dy2;
+    final double y1 = -sinAngle * dx2 + cosAngle * dy2;
 
     double rxSq = rx * rx;
     double rySq = ry * ry;
@@ -140,7 +140,7 @@ class EllipticalArcCommand extends Command {
       ((rxSq * rySq) - (rxSq * y1Sq) - (rySq * x1Sq)) /
           ((rxSq * y1Sq) + (rySq * x1Sq)),
     );
-    final double coefficient = (sign * sqrt(sq));
+    final double coefficient = sign * sqrt(sq);
     final double cx1 = coefficient * ((rx * y1) / ry);
     final double cy1 = coefficient * -((ry * x1) / rx);
 
@@ -185,11 +185,11 @@ class EllipticalArcCommand extends Command {
     // support arcs that are axis aligned. Therefore we need to substitute the arc
     // with bezier curves. The following method call will generate the beziers for
     // a unit circle that covers the arc angles we want.
-    List<CoordinatePair> bezierPoints = _arcToBeziers(angleStart, angleExtent);
+    final List<CoordinatePair> bezierPoints = _arcToBeziers(angleStart, angleExtent);
 
     // Calculate a transformation matrix that will move and scale these bezier points to the correct location.
     // translate
-    Matrix3 m = Matrix3.identity()..setColumn(2, Vector3(cx, cy, 1.0));
+    final Matrix3 m = Matrix3.identity()..setColumn(2, Vector3(cx, cy, 1.0));
     // rotate
     m.multiply(
       Matrix3.identity()
@@ -221,7 +221,7 @@ class EllipticalArcCommand extends Command {
       y: y,
     );
 
-    List<Command> bezierCurves = [];
+    final List<Command> bezierCurves = [];
     // Final step is to add the bezier curves to the path
     for (int i = 0; i < bezierPoints.length; i += 3) {
       bezierCurves.add(
@@ -253,18 +253,18 @@ class EllipticalArcCommand extends Command {
   }
 
   List<CoordinatePair> _arcToBeziers(double angleStart, double angleExtent) {
-    int numSegments =
+    final int numSegments =
         (angleExtent.abs() * 2.0 / pi).ceil(); // (angleExtent / 90deg)
 
-    double angleIncrement = angleExtent / numSegments;
+    final double angleIncrement = angleExtent / numSegments;
 
     // The length of each control point vector is given by the following formula.
-    double controlLength = 4.0 /
+    final double controlLength = 4.0 /
         3.0 *
         sin(angleIncrement / 2.0) /
         (1.0 + cos(angleIncrement / 2.0));
 
-    List<CoordinatePair> coordinatePairs = [];
+    final List<CoordinatePair> coordinatePairs = [];
 
     for (int i = 0; i < numSegments; i++) {
       double angle = angleStart + i * angleIncrement;
@@ -306,7 +306,7 @@ class EllipticalArcCommand extends Command {
   }) {
     if (isAbsolute) {
       final EllipticalArcArgument lastPoint =
-          (commandArguments as EllipticalArcArgumentSequence)
+          (commandArguments! as EllipticalArcArgumentSequence)
               .ellipticalArcArguments
               .last;
       return CoordinatePair(
@@ -317,7 +317,7 @@ class EllipticalArcCommand extends Command {
     double x = previousPoint.x;
     double y = previousPoint.y;
     for (final EllipticalArcArgument eaa
-        in (commandArguments as EllipticalArcArgumentSequence)
+        in (commandArguments! as EllipticalArcArgumentSequence)
             .ellipticalArcArguments) {
       x += eaa.x;
       y += eaa.y;
@@ -334,8 +334,8 @@ class EllipticalArcCommand extends Command {
       return false;
     }
     return command == other.command &&
-        commandArguments as EllipticalArcArgumentSequence ==
-            other.commandArguments as EllipticalArcArgumentSequence;
+        commandArguments! as EllipticalArcArgumentSequence ==
+            other.commandArguments! as EllipticalArcArgumentSequence;
   }
 
   @override

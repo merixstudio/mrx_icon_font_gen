@@ -1,9 +1,9 @@
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('Constructor', () {
-    final object = _buildObject();
+    final EllipticalArcArgument object = _buildObject();
 
     expect(object.rx, closeTo(1.23, 0.001));
     expect(object.ry, closeTo(2.35, 0.001));

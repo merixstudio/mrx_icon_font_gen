@@ -1,4 +1,4 @@
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -9,7 +9,7 @@ void main() {
     });
 
     test('Construct with {command: "MOCK"}', () {
-      final commandName = 'MOCK';
+      const commandName = 'MOCK';
       final command = _MockCommand(
         command: commandName,
       );
@@ -17,7 +17,7 @@ void main() {
     });
 
     test('Construct with {command: "mock"}', () {
-      final commandName = 'mock';
+      const commandName = 'mock';
       final command = _MockCommand(
         command: commandName,
       );
@@ -25,8 +25,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'MOCK';
-      final isRelative = false;
+      const commandName = 'MOCK';
+      const isRelative = false;
       final command = _MockCommand(
         isRelative: isRelative,
       );
@@ -34,8 +34,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'mock';
-      final isRelative = true;
+      const commandName = 'mock';
+      const isRelative = true;
       final command = _MockCommand(
         isRelative: isRelative,
       );
@@ -45,7 +45,7 @@ void main() {
 
   group('isRelative getter', () {
     test('isRelative: true', () {
-      final isRelative = true;
+      const isRelative = true;
       final command = _MockCommand(
         isRelative: isRelative,
       );
@@ -53,7 +53,7 @@ void main() {
     });
 
     test('isRelative: false', () {
-      final isRelative = false;
+      const isRelative = false;
       final command = _MockCommand(
         isRelative: isRelative,
       );
@@ -63,7 +63,7 @@ void main() {
 
   group('isAbsolute getter', () {
     test('isRelative: true', () {
-      final isRelative = true;
+      const isRelative = true;
       final command = _MockCommand(
         isRelative: isRelative,
       );
@@ -71,7 +71,7 @@ void main() {
     });
 
     test('isRelative: false', () {
-      final isRelative = false;
+      const isRelative = false;
       final command = _MockCommand(
         isRelative: isRelative,
       );

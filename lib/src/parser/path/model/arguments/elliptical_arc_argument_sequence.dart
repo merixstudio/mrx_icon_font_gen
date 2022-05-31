@@ -1,5 +1,5 @@
-import 'package:icon_font/src/parser/path/model/arguments/elliptical_arc_argument.dart';
-import 'package:icon_font/src/parser/path/model/command_arguments.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/elliptical_arc_argument.dart';
+import 'package:mrx_icon_font_gen/src/parser/path/model/command_arguments.dart';
 
 /// A sequence of [EllipticalArcArgument]s.
 ///

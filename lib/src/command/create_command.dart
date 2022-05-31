@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:icon_font/src/config_generator/config_generator.dart';
-import 'package:icon_font/src/config_generator/model/generator_options.dart';
-import 'package:icon_font/src/config_generator/model/icon_file.dart';
-import 'package:icon_font/src/directory_scanner/directory_scanner.dart';
-import 'package:icon_font/src/flutter_icon_client/flutter_icon_client.dart';
+import 'package:mrx_icon_font_gen/src/config_generator/config_generator.dart';
+import 'package:mrx_icon_font_gen/src/config_generator/model/generator_options.dart';
+import 'package:mrx_icon_font_gen/src/config_generator/model/icon_file.dart';
+import 'package:mrx_icon_font_gen/src/directory_scanner/directory_scanner.dart';
+import 'package:mrx_icon_font_gen/src/flutter_icon_client/flutter_icon_client.dart';
 
 class CreateCommand extends Command {
   @override
@@ -16,7 +16,7 @@ class CreateCommand extends Command {
   String get name => 'create';
 
   @override
-  void run() async {
+  Future<void> run() async {
     final GeneratorOptions options =
         GeneratorOptions.fromArgResults(argResults!);
     final String directory = options.from;
@@ -29,7 +29,7 @@ class CreateCommand extends Command {
         file: file,
       )..parse();
       if (iconFile.error != null) {
-        print(iconFile.error);
+        stderr.writeln(iconFile.error);
         continue;
       }
       iconFiles.add(iconFile);

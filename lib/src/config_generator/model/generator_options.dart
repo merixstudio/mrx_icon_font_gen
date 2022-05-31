@@ -59,10 +59,10 @@ class GeneratorOptions {
   });
 
   GeneratorOptions.fromArgResults(ArgResults argResults) {
-    from = argResults[fromOption];
-    outConfig = argResults[outConfigOption];
-    outFont = argResults[outFontOption];
-    outFlutter = argResults[outFlutterOption];
-    className = argResults[classNameOption];
+    from = argResults[fromOption] as String;
+    outConfig = argResults[outConfigOption] as String;
+    outFont = argResults[outFontOption] as String;
+    outFlutter = argResults[outFlutterOption] as String;
+    className = argResults[classNameOption] as String;
   }
 }

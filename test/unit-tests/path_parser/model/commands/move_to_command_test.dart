@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:icon_font/icon_font.dart';
+import 'package:mrx_icon_font_gen/mrx_icon_font_gen.dart';
 import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Construct with {command: "M"}', () {
-      final commandName = 'M';
+      const commandName = 'M';
       final command = MoveToCommand(
         command: commandName,
         commandArguments: CoordinatePairSequence(
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('Construct with {command: "m"}', () {
-      final commandName = 'm';
+      const commandName = 'm';
       final command = MoveToCommand(
         command: commandName,
         commandArguments: CoordinatePairSequence(
@@ -52,8 +52,8 @@ void main() {
     });
 
     test('Construct with {isRelative: false}', () {
-      final commandName = 'M';
-      final isRelative = false;
+      const commandName = 'M';
+      const isRelative = false;
       final command = MoveToCommand(
         isRelative: isRelative,
         commandArguments: CoordinatePairSequence(
@@ -64,8 +64,8 @@ void main() {
     });
 
     test('Construct with {isRelative: true}', () {
-      final commandName = 'm';
-      final isRelative = true;
+      const commandName = 'm';
+      const isRelative = true;
       final command = MoveToCommand(
         isRelative: isRelative,
         commandArguments: CoordinatePairSequence(
@@ -78,18 +78,18 @@ void main() {
 
   test('Absolute toString()', () {
     final command = _buildAbsoluteMoveToCommand();
-    final toString = 'M20.00 10.00 10.00 20.00';
+    const toString = 'M20.00 10.00 10.00 20.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Relative toString()', () {
     final command = _buildRelativeMoveToCommand();
-    final toString = 'm10.00 0.00 -10.00 10.00';
+    const toString = 'm10.00 0.00 -10.00 10.00';
     expect(command.toString(), equals(toString));
   });
 
   test('Absolute applyTransformation() - identity', () {
-    final command = _buildAbsoluteMoveToCommand();
+    final MoveToCommand command = _buildAbsoluteMoveToCommand();
     final transform = Matrix3.identity();
     final startPoint = _buildStartPoint();
     final translated = MoveToCommand(

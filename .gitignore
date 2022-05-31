@@ -6,7 +6,7 @@
 build/
 
 coverage/
-coverage-report/
+doc/api/
 
 .DS_Store
 .idea/
