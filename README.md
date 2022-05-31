@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://raw.githubusercontent.com/merixstudio/mrx_icon_font_gen/main/assets/images/merix_logo.png" height="153" alt="Merixstudio" />
+</p>
+
 The `mrx_icon_font_gen` package can be used to generate an icon font from a directory of SVG files.
 The font is created using a [FlutterIcon][] tool, and thus, it requires
 an Internet connection to work. Generated files can be used to further customize the font file using
