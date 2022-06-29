@@ -89,7 +89,8 @@ void main() {
   });
 
   test('Absolute applyTransformation() - identity', () {
-    final HorizontalLineToCommand command = _buildAbsoluteHorizontalLineToCommand();
+    final HorizontalLineToCommand command =
+        _buildAbsoluteHorizontalLineToCommand();
     final transform = Matrix3.identity();
     final startPoint = _buildStartPoint();
     final translated = LineToCommand(

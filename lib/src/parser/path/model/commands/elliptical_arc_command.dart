@@ -185,7 +185,8 @@ class EllipticalArcCommand extends Command {
     // support arcs that are axis aligned. Therefore we need to substitute the arc
     // with bezier curves. The following method call will generate the beziers for
     // a unit circle that covers the arc angles we want.
-    final List<CoordinatePair> bezierPoints = _arcToBeziers(angleStart, angleExtent);
+    final List<CoordinatePair> bezierPoints =
+        _arcToBeziers(angleStart, angleExtent);
 
     // Calculate a transformation matrix that will move and scale these bezier points to the correct location.
     // translate

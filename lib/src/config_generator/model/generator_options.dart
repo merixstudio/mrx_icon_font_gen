@@ -24,8 +24,7 @@ class GeneratorOptions {
     ..addOption(
       outConfigOption,
       abbr: 'c',
-      help:
-          'Output JSON configuration file for FlutterIcon',
+      help: 'Output JSON configuration file for FlutterIcon',
       valueHelp: 'FILE-PATH',
       defaultsTo: 'assets/fonts/config/',
     )
@@ -38,8 +37,7 @@ class GeneratorOptions {
     )
     ..addOption(
       outFlutterOption,
-      help:
-          'Output icon class file containing icon definitions',
+      help: 'Output icon class file containing icon definitions',
       valueHelp: 'FILE-PATH',
       defaultsTo: 'lib/config/font/',
     )

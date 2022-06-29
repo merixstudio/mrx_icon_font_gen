@@ -54,7 +54,8 @@ void main() {
     test('Construct with {isRelative: false}', () {
       const commandName = 'Q';
       const isRelative = false;
-      final QuadraticBezierCurveToCommand command = QuadraticBezierCurveToCommand(
+      final QuadraticBezierCurveToCommand command =
+          QuadraticBezierCurveToCommand(
         isRelative: isRelative,
         commandArguments: QuadraticBezierCurveToCoordinateSequence(
           coordinatePairDoubles: [],

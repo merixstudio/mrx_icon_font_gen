@@ -70,7 +70,10 @@ class FlutterIconClient {
     final String extension = fileName.split('.').last;
     switch (extension) {
       case 'dart':
-        return p.join(options.outFlutter, '${_toSnakeCase(options.className)}.dart');
+        return p.join(
+          options.outFlutter,
+          '${_toSnakeCase(options.className)}.dart',
+        );
       case 'json':
         return p.join(options.outConfig, 'config.json');
       case 'ttf':

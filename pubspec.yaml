@@ -1,6 +1,8 @@
 name: mrx_icon_font_gen
 description: A command-line application for generating an icon font from a set of SVG files using https://www.fluttericon.com
-version: 0.1.0
+version: 0.1.1
+repository: https://github.com/merixstudio/mrx_icon_font_gen
+issue_tracker: https://github.com/merixstudio/mrx_icon_font_gen/issues
 
 environment:
   sdk: '>=2.17.0 <3.0.0'

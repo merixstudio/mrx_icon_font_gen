@@ -83,8 +83,8 @@ class IconFile {
     Matrix3 elementTransformation = _getElementTransformMatrix(path);
     final List<double> viewBoxArgs = _getViewBox(document);
     final Matrix3 sizeNormalization = _getSizeNormalizationMatrix(viewBoxArgs);
-    _height = viewBoxArgs[2] * sizeNormalization.getColumn(0).x;
-    _width = viewBoxArgs[3] * sizeNormalization.getColumn(1).y;
+    _width = viewBoxArgs[2] * sizeNormalization.getColumn(0).x;
+    _height = viewBoxArgs[3] * sizeNormalization.getColumn(1).y;
     elementTransformation = sizeNormalization.multiplied(elementTransformation);
 
     final result = _pathParser!.parse(

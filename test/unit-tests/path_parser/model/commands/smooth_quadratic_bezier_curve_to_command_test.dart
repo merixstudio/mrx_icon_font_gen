@@ -66,7 +66,8 @@ void main() {
     test('Construct with {isRelative: true}', () {
       const commandName = 't';
       const isRelative = true;
-      final SmoothQuadraticBezierCurveToCommand command = SmoothQuadraticBezierCurveToCommand(
+      final SmoothQuadraticBezierCurveToCommand command =
+          SmoothQuadraticBezierCurveToCommand(
         isRelative: isRelative,
         commandArguments: CoordinatePairSequence(
           coordinatePairs: [],

@@ -14,7 +14,8 @@ export 'package:mrx_icon_font_gen/src/parser/path/model/arguments/quadratic_bezi
     show QuadraticBezierCurveToCoordinateSequence;
 export 'package:mrx_icon_font_gen/src/parser/path/model/arguments/smooth_curve_to_coordinate_sequence.dart'
     show SmoothCurveToCoordinateSequence;
-export 'package:mrx_icon_font_gen/src/parser/path/model/command.dart' show Command;
+export 'package:mrx_icon_font_gen/src/parser/path/model/command.dart'
+    show Command;
 export 'package:mrx_icon_font_gen/src/parser/path/model/command_arguments.dart'
     show CommandArguments;
 export 'package:mrx_icon_font_gen/src/parser/path/model/commands/close_path_command.dart'

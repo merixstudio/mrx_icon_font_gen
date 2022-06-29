@@ -13,12 +13,19 @@ import 'package:petitparser/petitparser.dart';
 /// from W3C SVG documentation.
 class TransformGrammarDefinition extends GrammarDefinition {
   @override
-  Parser start() => (ref0(wsp).star() & ref0(transforms).optional() & ref0(wsp).star()).end();
+  Parser start() =>
+      (ref0(wsp).star() & ref0(transforms).optional() & ref0(wsp).star()).end();
 
-  Parser transforms() => ref0(transform) & ref0(commaWsp) & ref0(transforms) | ref0(transform);
+  Parser transforms() =>
+      ref0(transform) & ref0(commaWsp) & ref0(transforms) | ref0(transform);
 
   Parser transform() =>
-      ref0(matrix) | ref0(translate) | ref0(scale) | ref0(rotate) | ref0(skewX) | ref0(skewY);
+      ref0(matrix) |
+      ref0(translate) |
+      ref0(scale) |
+      ref0(rotate) |
+      ref0(skewX) |
+      ref0(skewY);
 
   Parser translate() => (string('translate') &
               ref0(wsp).star() &
@@ -59,15 +66,22 @@ class TransformGrammarDefinition extends GrammarDefinition {
               char('(') &
               ref0(wsp).star() &
               ref0(number) &
-              (ref0(commaWsp).optional() & ref0(number) & ref0(commaWsp).optional() & ref0(number))
+              (ref0(commaWsp).optional() &
+                      ref0(number) &
+                      ref0(commaWsp).optional() &
+                      ref0(number))
                   .optional() &
               ref0(wsp).star() &
               char(')'))
           .map((value) {
         return RotateTransform(
           a: value[4] as double,
-          cx: value[5] is Iterable ? (value[5] as Iterable).elementAt(1) as double : 0.0,
-          cy: value[5] is Iterable ? (value[5] as Iterable).elementAt(3) as double : 0.0,
+          cx: value[5] is Iterable
+              ? (value[5] as Iterable).elementAt(1) as double
+              : 0.0,
+          cy: value[5] is Iterable
+              ? (value[5] as Iterable).elementAt(3) as double
+              : 0.0,
         );
       });
 
@@ -129,15 +143,17 @@ class TransformGrammarDefinition extends GrammarDefinition {
           ((char('.') & digit().plus()) |
               (digit().plus() & char('.') & digit().star()) |
               digit().plus()) &
-          ((char('E') | char('e')) & ref0(sign).optional() & digit().plus()).optional())
+          ((char('E') | char('e')) & ref0(sign).optional() & digit().plus())
+              .optional())
       .flatten()
       .map(double.parse);
 
   Parser sign() => char('+') | char('-');
 
-  Parser commaWsp() => ((ref0(wsp).plus() & char(',').optional() & ref0(wsp).star()) |
-          (char(',') & ref0(wsp).star()))
-      .map((_) => null);
+  Parser commaWsp() =>
+      ((ref0(wsp).plus() & char(',').optional() & ref0(wsp).star()) |
+              (char(',') & ref0(wsp).star()))
+          .map((_) => null);
 
   Parser wsp() => (char(String.fromCharCode(0x9)) |
           char(String.fromCharCode(0x20)) |

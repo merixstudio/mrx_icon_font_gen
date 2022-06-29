@@ -29,13 +29,13 @@ class PathGrammarDefinition extends GrammarDefinition {
   @override
   Parser start() => (ref0(svgPath)).end();
 
-  Parser svgPath() =>
-      (((ref0(moveto) & ref0(wsp).star()).plus() & (ref0(drawtoCommand) & ref0(wsp).star()).star())
-                  .map((value) {
-                return value.flatten().whereType<Command>().toList();
-              }) |
-              string('none').map((value) => null))
-          .trim();
+  Parser svgPath() => (((ref0(moveto) & ref0(wsp).star()).plus() &
+                  (ref0(drawtoCommand) & ref0(wsp).star()).star())
+              .map((value) {
+            return value.flatten().whereType<Command>().toList();
+          }) |
+          string('none').map((value) => null))
+      .trim();
 
   Parser drawtoCommand() =>
       ref0(moveto) |
@@ -49,8 +49,10 @@ class PathGrammarDefinition extends GrammarDefinition {
       ref0(smoothQuadraticBezierCurveto) |
       ref0(ellipticalArc);
 
-  Parser moveto() =>
-      ((char('M') | char('m')) & ref0(wsp).star() & ref0(coordinatePairSequence)).map((value) {
+  Parser moveto() => ((char('M') | char('m')) &
+              ref0(wsp).star() &
+              ref0(coordinatePairSequence))
+          .map((value) {
         return MoveToCommand(
           command: value[0] as String,
           commandArguments: value[2] as CoordinatePairSequence,
@@ -63,8 +65,10 @@ class PathGrammarDefinition extends GrammarDefinition {
         );
       });
 
-  Parser lineto() =>
-      ((char('L') | char('l')) & ref0(wsp).star() & ref0(coordinatePairSequence)).map((value) {
+  Parser lineto() => ((char('L') | char('l')) &
+              ref0(wsp).star() &
+              ref0(coordinatePairSequence))
+          .map((value) {
         return LineToCommand(
           command: value[0] as String,
           commandArguments: value[2] as CoordinatePairSequence,
@@ -72,7 +76,8 @@ class PathGrammarDefinition extends GrammarDefinition {
       });
 
   Parser horizontalLineto() =>
-      ((char('H') | char('h')) & ref0(wsp).star() & ref0(coordinateSequence)).map((value) {
+      ((char('H') | char('h')) & ref0(wsp).star() & ref0(coordinateSequence))
+          .map((value) {
         return HorizontalLineToCommand(
           command: value[0] as String,
           commandArguments: CoordinateSequence(
@@ -82,7 +87,8 @@ class PathGrammarDefinition extends GrammarDefinition {
       });
 
   Parser verticalLineto() =>
-      ((char('V') | char('v')) & ref0(wsp).star() & ref0(coordinateSequence)).map((value) {
+      ((char('V') | char('v')) & ref0(wsp).star() & ref0(coordinateSequence))
+          .map((value) {
         return VerticalLineToCommand(
           command: value[0] as String,
           commandArguments: CoordinateSequence(
@@ -91,8 +97,10 @@ class PathGrammarDefinition extends GrammarDefinition {
         );
       });
 
-  Parser curveto() =>
-      ((char('C') | char('c')) & ref0(wsp).star() & ref0(curvetoCoordinateSequence)).map((value) {
+  Parser curveto() => ((char('C') | char('c')) &
+              ref0(wsp).star() &
+              ref0(curvetoCoordinateSequence))
+          .map((value) {
         return CurveToCommand(
           command: value[0] as String,
           commandArguments: CurveToCoordinateSequence(
@@ -102,7 +110,9 @@ class PathGrammarDefinition extends GrammarDefinition {
       });
 
   Parser curvetoCoordinateSequence() =>
-      (ref0(coordinatePairTriplet) & ref0(commaWsp).optional() & ref0(curvetoCoordinateSequence))
+      (ref0(coordinatePairTriplet) &
+              ref0(commaWsp).optional() &
+              ref0(curvetoCoordinateSequence))
           .map((value) {
         return <CoordinatePairTriplet>[
               value[0] as CoordinatePairTriplet,
@@ -113,8 +123,9 @@ class PathGrammarDefinition extends GrammarDefinition {
         return <CoordinatePairTriplet>[value as CoordinatePairTriplet];
       });
 
-  Parser smoothCurveto() =>
-      ((char('S') | char('s')) & ref0(wsp).star() & ref0(smoothCurvetoCoordinateSequence))
+  Parser smoothCurveto() => ((char('S') | char('s')) &
+              ref0(wsp).star() &
+              ref0(smoothCurvetoCoordinateSequence))
           .map((value) {
         return SmoothCurveToCommand(
           command: value[0] as String,
@@ -134,11 +145,13 @@ class PathGrammarDefinition extends GrammarDefinition {
             ] +
             (value[2] as List<CoordinatePairDouble>);
       }) |
-      ref0(coordinatePairDouble)
-          .map((value) => <CoordinatePairDouble>[value as CoordinatePairDouble]);
+      ref0(coordinatePairDouble).map(
+        (value) => <CoordinatePairDouble>[value as CoordinatePairDouble],
+      );
 
-  Parser quadraticBezierCurveto() =>
-      ((char('Q') | char('q')) & ref0(wsp).star() & ref0(quadraticBezierCurvetoCoordinateSequence))
+  Parser quadraticBezierCurveto() => ((char('Q') | char('q')) &
+              ref0(wsp).star() &
+              ref0(quadraticBezierCurvetoCoordinateSequence))
           .map((value) {
         return QuadraticBezierCurveToCommand(
           command: value[0] as String,
@@ -158,18 +171,23 @@ class PathGrammarDefinition extends GrammarDefinition {
             ] +
             (value[2] as List<CoordinatePairDouble>);
       }) |
-      ref0(coordinatePairDouble).map((value) => <CoordinatePairDouble>[value as CoordinatePairDouble]);
+      ref0(coordinatePairDouble).map(
+        (value) => <CoordinatePairDouble>[value as CoordinatePairDouble],
+      );
 
-  Parser smoothQuadraticBezierCurveto() =>
-      ((char('T') | char('t')) & ref0(wsp).star() & ref0(coordinatePairSequence)).map((value) {
+  Parser smoothQuadraticBezierCurveto() => ((char('T') | char('t')) &
+              ref0(wsp).star() &
+              ref0(coordinatePairSequence))
+          .map((value) {
         return SmoothQuadraticBezierCurveToCommand(
           command: value[0] as String,
           commandArguments: value[2] as CoordinatePairSequence,
         );
       });
 
-  Parser ellipticalArc() =>
-      ((char('A') | char('a')) & ref0(wsp).star() & ref0(ellipticalArcArgumentSequence))
+  Parser ellipticalArc() => ((char('A') | char('a')) &
+              ref0(wsp).star() &
+              ref0(ellipticalArcArgumentSequence))
           .map((value) {
         return EllipticalArcCommand(
           command: value[0] as String,
@@ -217,7 +235,8 @@ class PathGrammarDefinition extends GrammarDefinition {
       });
 
   Parser coordinatePairDouble() =>
-      (ref0(coordinatePair) & ref0(commaWsp).optional() & ref0(coordinatePair)).map((value) {
+      (ref0(coordinatePair) & ref0(commaWsp).optional() & ref0(coordinatePair))
+          .map((value) {
         return CoordinatePairDouble(
           coordinatePairs: <CoordinatePair>[
             value[0] as CoordinatePair,
@@ -242,7 +261,9 @@ class PathGrammarDefinition extends GrammarDefinition {
       });
 
   Parser coordinatePairSequence() =>
-      (ref0(coordinatePair) & ref0(commaWsp).optional() & ref0(coordinatePairSequence))
+      (ref0(coordinatePair) &
+              ref0(commaWsp).optional() &
+              ref0(coordinatePairSequence))
           .map((value) {
         return CoordinatePairSequence(
           coordinatePairs: <CoordinatePair>[
@@ -258,7 +279,8 @@ class PathGrammarDefinition extends GrammarDefinition {
       });
 
   Parser coordinateSequence() =>
-      (ref0(coordinate) & ref0(commaWsp).optional() & ref0(coordinateSequence)).map((value) {
+      (ref0(coordinate) & ref0(commaWsp).optional() & ref0(coordinateSequence))
+          .map((value) {
         return <double>[
               value[0] as double,
             ] +
@@ -269,7 +291,8 @@ class PathGrammarDefinition extends GrammarDefinition {
       });
 
   Parser coordinatePair() =>
-      (ref0(coordinate) & ref0(commaWsp).optional() & ref0(coordinate)).map((value) {
+      (ref0(coordinate) & ref0(commaWsp).optional() & ref0(coordinate))
+          .map((value) {
         return CoordinatePair(
           x: value[0] as double,
           y: value[2] as double,
@@ -284,15 +307,18 @@ class PathGrammarDefinition extends GrammarDefinition {
           ((char('.') & digit().plus()) |
               (digit().plus() & char('.') & digit().star()) |
               digit().plus()) &
-          ((char('E') | char('e')) & ref0(sign).optional() & digit().plus()).optional())
+          ((char('E') | char('e')) & ref0(sign).optional() & digit().plus())
+              .optional())
       .flatten()
       .map(double.parse);
 
-  Parser flag() => (char('0') | char('1')).map((value) => int.parse(value as String));
+  Parser flag() =>
+      (char('0') | char('1')).map((value) => int.parse(value as String));
 
-  Parser commaWsp() => ((ref0(wsp).plus() & char(',').optional() & ref0(wsp).star()) |
-          (char(',') & ref0(wsp).star()))
-      .map((_) => null);
+  Parser commaWsp() =>
+      ((ref0(wsp).plus() & char(',').optional() & ref0(wsp).star()) |
+              (char(',') & ref0(wsp).star()))
+          .map((_) => null);
 
   Parser wsp() => (char(String.fromCharCode(0x9)) |
           char(String.fromCharCode(0x20)) |

@@ -1,7 +1,6 @@
 import 'package:mrx_icon_font_gen/src/parser/path/model/arguments/coordinate_pair_sequence.dart';
 import 'package:mrx_icon_font_gen/src/parser/path/model/command_arguments.dart';
 
-
 class QuadraticBezierCurveToCoordinateSequence extends CommandArguments {
   final List<CoordinatePairDouble> coordinatePairDoubles;
 
